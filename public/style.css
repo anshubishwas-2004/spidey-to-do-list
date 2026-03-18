@@ -1,0 +1,216 @@
+/* =========================================
+   1. SPIDEY THEME VARIABLES
+   ========================================= */
+:root {
+  --spidey-red: #e63946;
+  --spidey-blue: #1d3557;
+  --spidey-dark: #0b0c2a;
+  --spidey-glow: rgba(230, 57, 70, 0.6);
+  --blue-glow: rgba(29, 53, 87, 0.6);
+}
+
+/* =========================================
+   1. GLOBAL & BACKGROUND (PlayStation Store Vibe)
+   ========================================= */
+body {
+  background-color: #0f0f0f; /* The dark base color of the PS Store */
+  
+  /* The magic is here: A dark fade overlay ON TOP OF a cinematic background image */
+  background-image: 
+    linear-gradient(to bottom, rgba(15, 15, 15, 0.4) 0%, #0f0f0f 100%),
+    url('https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/5ayReKkz8RaBVuTvrxgA3rvh.png'); /* Replace this URL with your favorite Spidey wallpaper! */
+  
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Web-like Selection Color */
+::selection {
+  background: var(--spidey-red);
+  color: white;
+}
+
+/* Custom Spidey Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #e63946;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff4d4d;
+}
+
+/* =========================================
+   2. THE MAIN APP CARD (Dark & Shiny Glass)
+   ========================================= */
+.spidey-card {
+  /* The Deep Dark Base: Almost black, but transparent enough to blur the background */
+  background-color: rgba(10, 10, 12, 0.75) !important;
+  
+  /* The Glossy Shine: A sharp, bright diagonal streak that fades out quickly */
+  background-image: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0.02) 20%, 
+    transparent 40%
+  ) !important;
+  
+  /* The Frosted Blur */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* The Crisp Glass Edges catching the light */
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.4) !important; 
+  border-left: 1px solid rgba(255, 255, 255, 0.4) !important;
+  
+  /* Deep shadow underneath, cinematic Spidey red glow, AND an inner shine */
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.9), 
+    0 0 30px rgba(230, 57, 70, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2) !important; 
+  
+  color: white;
+  border-radius: 16px;
+}
+
+/* =========================================
+   3. TYPOGRAPHY & TITLE GLOW
+   ========================================= */
+.spidey-title {
+  color: #fff !important;
+  /* Cleaner, more modern glow fitting for a game UI */
+  text-shadow: 0 0 10px rgba(230, 57, 70, 0.8), 0 0 20px rgba(230, 57, 70, 0.4); 
+}
+
+/* =========================================
+   5. INPUT & BUTTONS (Modern & Interactive)
+   ========================================= */
+.input-group {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#taskInput {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--spidey-blue);
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+#taskInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#taskInput:focus {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px var(--spidey-glow);
+  border-color: var(--spidey-red);
+  outline: none;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #e63946, #c1121f);
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy hover */
+}
+
+.btn-danger:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--spidey-glow);
+  background: linear-gradient(135deg, #ff4d4d, #e63946);
+}
+
+.btn-danger:active {
+  transform: scale(0.95); /* Satisfying click effect */
+}
+
+/* =========================================
+   6. TASK LIST ITEMS (Sleek Panels)
+   ========================================= */
+.list-group-item {
+  background: linear-gradient(90deg, rgba(29, 53, 87, 0.3), transparent) !important;
+  border: none !important;
+  border-left: 4px solid var(--spidey-blue) !important; /* Blue accent line */
+  color: white !important;
+  margin-bottom: 12px;
+  border-radius: 8px !important;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  animation: swingIn 0.5s ease-out forwards; /* Entry animation */
+  opacity: 0; /* Starts hidden for the animation */
+  transform-origin: top center;
+}
+
+.list-group-item:hover {
+  border-left: 4px solid var(--spidey-red) !important;
+  background: linear-gradient(90deg, rgba(230, 57, 70, 0.15), transparent) !important;
+  transform: translateX(5px); /* Slight shift right on hover */
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* The Completed Task State */
+.list-group-item.completed {
+  text-decoration: line-through;
+  text-decoration-color: var(--spidey-red);
+  text-decoration-thickness: 3px;
+  opacity: 0.5;
+  border-left: 4px solid #555 !important;
+  background: transparent !important;
+  transform: scale(0.98);
+}
+
+/* Delete Button on the Task */
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: var(--spidey-red);
+  transform: rotate(15deg) scale(1.2); /* Fun little spin on hover */
+  text-shadow: 0 0 10px var(--spidey-red);
+}
+
+/* =========================================
+   7. KEYFRAME ANIMATIONS
+   ========================================= */
+/* Subtle pulse for the main title */
+@keyframes pulseGlow {
+  from { text-shadow: 0 0 5px var(--spidey-red), 0 0 15px var(--spidey-red); }
+  to { text-shadow: 0 0 10px var(--spidey-red), 0 0 25px var(--spidey-red), 0 0 40px var(--spidey-red); }
+}
+
+/* Web-swinging entrance animation for new tasks */
+@keyframes swingIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) rotateX(-20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
