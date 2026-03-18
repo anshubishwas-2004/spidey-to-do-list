@@ -22,7 +22,7 @@
 
 ## 📸 Preview  
 ```
-/public/screenshot.png
+/public/Screenshot.png
 ```
 
 ---
